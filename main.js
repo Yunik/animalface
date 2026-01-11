@@ -319,11 +319,12 @@ async function downloadResultCard() {
 // 결과 공유하기
 async function shareResult() {
     const shareBtn = document.getElementById('share-btn');
+    const siteUrl = 'https://animalface-2m5.pages.dev/';
 
     const shareData = {
         title: '직장인 유형 테스트 결과',
-        text: `나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"입니다! ${currentResultData?.description || ''}\n\n나도 테스트 해보기:`,
-        url: window.location.href
+        text: `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉`,
+        url: siteUrl
     };
 
     // Web Share API 지원 확인
