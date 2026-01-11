@@ -111,11 +111,37 @@ async function predict(imageElement) {
 
 // 결과 표시
 function displayResult(predictions) {
+    // 디버깅: 모델이 반환한 클래스 이름 확인
+    console.log('모델 클래스 목록:', predictions.map(p => p.className));
+
     // 확률순 정렬
     const sorted = [...predictions].sort((a, b) => b.probability - a.probability);
     const topResult = sorted[0];
 
-    const data = animalData[topResult.className];
+    // 클래스 이름으로 데이터 찾기 (정확히 일치하거나 포함하는 경우)
+    let data = animalData[topResult.className];
+    if (!data) {
+        // 클래스 이름이 정확히 일치하지 않으면 부분 일치로 찾기
+        const classNameLower = topResult.className.toLowerCase();
+        for (const key of Object.keys(animalData)) {
+            if (classNameLower.includes(key.toLowerCase()) || key.toLowerCase().includes(classNameLower)) {
+                data = animalData[key];
+                break;
+            }
+        }
+    }
+
+    // 여전히 없으면 기본값 사용
+    if (!data) {
+        data = {
+            emoji: '❓',
+            name: topResult.className,
+            description: '분석 결과입니다.',
+            traits: ['분석완료'],
+            gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+        };
+    }
+
     const percentage = Math.round(topResult.probability * 100);
 
     // 결과 카드 업데이트
