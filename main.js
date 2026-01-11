@@ -316,94 +316,76 @@ async function downloadResultCard() {
     }
 }
 
-// 이미지에 URL 워터마크 추가
-function addWatermarkToCanvas(originalCanvas, url) {
-    const padding = 30;
-    const footerHeight = 80;
+// 사이트 URL
+const SITE_URL = 'https://animalface-2m5.pages.dev/';
 
-    // 새 캔버스 생성 (원본 + 푸터)
-    const newCanvas = document.createElement('canvas');
-    newCanvas.width = originalCanvas.width;
-    newCanvas.height = originalCanvas.height + footerHeight;
-
-    const ctx = newCanvas.getContext('2d');
-
-    // 배경색 (그라데이션과 어울리는 색)
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
-
-    // 원본 이미지 그리기
-    ctx.drawImage(originalCanvas, 0, 0);
-
-    // 푸터 배경
-    ctx.fillStyle = '#f8f9fa';
-    ctx.fillRect(0, originalCanvas.height, newCanvas.width, footerHeight);
-
-    // 구분선
-    ctx.strokeStyle = '#e0e0e0';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(0, originalCanvas.height);
-    ctx.lineTo(newCanvas.width, originalCanvas.height);
-    ctx.stroke();
-
-    // URL 텍스트
-    ctx.fillStyle = '#667eea';
-    ctx.font = 'bold 28px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('나도 테스트 하기 👉 ' + url, newCanvas.width / 2, originalCanvas.height + footerHeight / 2);
-
-    return newCanvas;
+// 공유 텍스트 생성
+function getShareText() {
+    return `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉 ${SITE_URL}`;
 }
 
-// 결과 공유하기
-async function shareResult() {
-    const shareBtn = document.getElementById('share-btn');
+// 이미지 공유 (이미지만)
+async function shareImage() {
+    const shareBtn = document.getElementById('share-image-btn');
     const originalText = shareBtn.innerHTML;
-    const siteUrl = 'https://animalface-2m5.pages.dev/';
 
-    const shareText = `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉 ${siteUrl}`;
+    if (!navigator.share) {
+        alert('이 브라우저에서는 공유 기능을 지원하지 않습니다.\n이미지 저장 버튼을 사용해주세요.');
+        return;
+    }
 
-    // Web Share API 지원 확인
+    try {
+        shareBtn.disabled = true;
+        shareBtn.innerHTML = '<span class="btn-icon">⏳</span><span>준비 중...</span>';
+
+        // 결과 카드를 이미지로 변환
+        const resultCard = document.getElementById('result-card');
+        const canvas = await html2canvas(resultCard, {
+            scale: 2,
+            backgroundColor: null,
+            useCORS: true
+        });
+
+        // Canvas를 Blob으로 변환
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const file = new File([blob], `직장인유형_${currentResultData?.name || '결과'}.png`, { type: 'image/png' });
+
+        const shareData = { files: [file] };
+
+        if (navigator.canShare && navigator.canShare(shareData)) {
+            await navigator.share(shareData);
+        } else {
+            alert('이미지 공유가 지원되지 않습니다.\n이미지 저장 버튼을 사용해주세요.');
+        }
+
+        shareBtn.innerHTML = originalText;
+        shareBtn.disabled = false;
+    } catch (error) {
+        shareBtn.innerHTML = originalText;
+        shareBtn.disabled = false;
+        if (error.name !== 'AbortError') {
+            console.error('이미지 공유 오류:', error);
+            alert('이미지 공유 중 오류가 발생했습니다.');
+        }
+    }
+}
+
+// 링크 공유 (텍스트 + URL)
+async function shareLink() {
+    const shareBtn = document.getElementById('share-link-btn');
+    const originalText = shareBtn.innerHTML;
+    const shareText = getShareText();
+
     if (navigator.share) {
         try {
             shareBtn.disabled = true;
             shareBtn.innerHTML = '<span class="btn-icon">⏳</span><span>준비 중...</span>';
 
-            // 결과 카드를 이미지로 변환
-            const resultCard = document.getElementById('result-card');
-            const canvas = await html2canvas(resultCard, {
-                scale: 2,
-                backgroundColor: null,
-                useCORS: true
-            });
-
-            // URL 워터마크 추가
-            const canvasWithWatermark = addWatermarkToCanvas(canvas, siteUrl);
-
-            // Canvas를 Blob으로 변환
-            const blob = await new Promise(resolve => canvasWithWatermark.toBlob(resolve, 'image/png'));
-            const file = new File([blob], `직장인유형_${currentResultData?.name || '결과'}.png`, { type: 'image/png' });
-
-            const shareData = {
+            await navigator.share({
                 title: '직장인 유형 테스트 결과',
                 text: shareText,
-                url: siteUrl,
-                files: [file]
-            };
-
-            // 파일 공유 지원 확인
-            if (navigator.canShare && navigator.canShare(shareData)) {
-                await navigator.share(shareData);
-            } else {
-                // 파일 공유 미지원 시 텍스트+URL 공유
-                await navigator.share({
-                    title: '직장인 유형 테스트 결과',
-                    text: shareText,
-                    url: siteUrl
-                });
-            }
+                url: SITE_URL
+            });
 
             shareBtn.innerHTML = originalText;
             shareBtn.disabled = false;
@@ -411,7 +393,7 @@ async function shareResult() {
             shareBtn.innerHTML = originalText;
             shareBtn.disabled = false;
             if (error.name !== 'AbortError') {
-                console.error('공유 오류:', error);
+                console.error('링크 공유 오류:', error);
                 fallbackShare(shareText);
             }
         }
@@ -512,8 +494,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 다운로드 버튼
     document.getElementById('download-btn').addEventListener('click', downloadResultCard);
 
-    // 공유 버튼
-    document.getElementById('share-btn').addEventListener('click', shareResult);
+    // 이미지 공유 버튼
+    document.getElementById('share-image-btn').addEventListener('click', shareImage);
+
+    // 링크 공유 버튼
+    document.getElementById('share-link-btn').addEventListener('click', shareLink);
 
     // 모델 미리 로드
     loadModel().then(() => {

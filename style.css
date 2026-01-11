@@ -412,27 +412,29 @@ h1 {
 /* 액션 버튼 (다운로드, 공유) */
 .action-buttons {
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .action-btn {
     flex: 1;
+    min-width: calc(50% - 5px);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 15px 20px;
-    font-size: 1rem;
+    gap: 6px;
+    padding: 12px 10px;
+    font-size: 0.9rem;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .action-btn .btn-icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .download-btn {
@@ -453,6 +455,16 @@ h1 {
 .share-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.share-link-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.share-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
 }
 
 .action-btn:disabled {
