@@ -72,13 +72,11 @@ const loadingMessages = [
 ];
 
 // 전역 변수
-let model, webcam, maxPredictions;
-let isWebcamRunning = false;
+let model, maxPredictions;
 
 // DOM 요소
 const screens = {
     start: document.getElementById('start-screen'),
-    webcam: document.getElementById('webcam-screen'),
     loading: document.getElementById('loading-screen'),
     result: document.getElementById('result-screen'),
     preview: document.getElementById('preview-screen')
@@ -99,47 +97,6 @@ async function loadModel() {
 
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
-}
-
-// 웹캠 초기화
-async function initWebcam() {
-    showScreen('webcam');
-
-    if (!model) {
-        await loadModel();
-    }
-
-    const flip = true;
-    webcam = new tmImage.Webcam(300, 300, flip);
-
-    try {
-        await webcam.setup();
-        await webcam.play();
-        isWebcamRunning = true;
-
-        document.getElementById('webcam-container').innerHTML = '';
-        document.getElementById('webcam-container').appendChild(webcam.canvas);
-
-        // 웹캠 업데이트 루프
-        const loop = async () => {
-            if (isWebcamRunning) {
-                webcam.update();
-                requestAnimationFrame(loop);
-            }
-        };
-        loop();
-    } catch (error) {
-        alert('카메라 접근이 거부되었습니다. 카메라 권한을 허용해주세요.');
-        showScreen('start');
-    }
-}
-
-// 웹캠 정지
-function stopWebcam() {
-    if (webcam) {
-        webcam.stop();
-        isWebcamRunning = false;
-    }
 }
 
 // 이미지 예측
@@ -209,23 +166,6 @@ function animateLoadingMessages() {
     return interval;
 }
 
-// 웹캠에서 촬영하여 분석
-async function captureAndAnalyze() {
-    showScreen('loading');
-    const loadingInterval = animateLoadingMessages();
-
-    try {
-        const predictions = await predict(webcam.canvas);
-        stopWebcam();
-        clearInterval(loadingInterval);
-        displayResult(predictions);
-    } catch (error) {
-        clearInterval(loadingInterval);
-        alert('분석 중 오류가 발생했습니다. 다시 시도해주세요.');
-        showScreen('start');
-    }
-}
-
 // 업로드된 이미지 분석
 async function analyzeUploadedImage() {
     showScreen('loading');
@@ -233,10 +173,27 @@ async function analyzeUploadedImage() {
 
     try {
         const previewImage = document.getElementById('preview-image');
-        const predictions = await predict(previewImage);
+
+        // 이미지가 로드될 때까지 대기
+        if (!previewImage.complete) {
+            await new Promise((resolve, reject) => {
+                previewImage.onload = resolve;
+                previewImage.onerror = reject;
+            });
+        }
+
+        // 이미지를 캔버스에 그려서 분석 (CORS 문제 방지)
+        const canvas = document.createElement('canvas');
+        canvas.width = previewImage.naturalWidth || previewImage.width;
+        canvas.height = previewImage.naturalHeight || previewImage.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(previewImage, 0, 0);
+
+        const predictions = await predict(canvas);
         clearInterval(loadingInterval);
         displayResult(predictions);
     } catch (error) {
+        console.error('분석 오류:', error);
         clearInterval(loadingInterval);
         alert('분석 중 오류가 발생했습니다. 다시 시도해주세요.');
         showScreen('start');
@@ -295,18 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         handleFile(file);
-    });
-
-    // 웹캠 버튼
-    document.getElementById('webcam-btn').addEventListener('click', initWebcam);
-
-    // 촬영 버튼
-    document.getElementById('capture-btn').addEventListener('click', captureAndAnalyze);
-
-    // 돌아가기 버튼 (웹캠)
-    document.getElementById('back-btn').addEventListener('click', () => {
-        stopWebcam();
-        showScreen('start');
     });
 
     // 분석하기 버튼 (미리보기)
