@@ -3,94 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>직장인 유형 테스트</title>
+    <title>직장인 유형 테스트 - AI가 분석하는 나의 회사 동물 유형</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AI 얼굴 분석으로 알아보는 나의 직장인 동물 유형! 독수리, 사자, 판다 등 8가지 유형 중 당신은 어떤 타입일까요? 무료로 테스트해보세요.">
+    <meta name="keywords" content="직장인 테스트, 동물 유형 테스트, AI 얼굴 분석, 성격 테스트, 직장인 유형, MBTI, 심리 테스트, 무료 테스트">
+    <meta name="author" content="직장인 유형 테스트">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://animalface-2m5.pages.dev/">
+    <meta property="og:title" content="직장인 유형 테스트 - AI가 분석하는 나의 회사 동물 유형">
+    <meta property="og:description" content="AI 얼굴 분석으로 알아보는 나의 직장인 동물 유형! 8가지 유형 중 당신은 어떤 타입일까요?">
+    <meta property="og:image" content="https://animalface-2m5.pages.dev/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="직장인 유형 테스트 - AI가 분석하는 나의 회사 동물 유형">
+    <meta name="twitter:description" content="AI 얼굴 분석으로 알아보는 나의 직장인 동물 유형! 8가지 유형 중 당신은 어떤 타입일까요?">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://animalface-2m5.pages.dev/">
+
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- 시작 화면 -->
-        <div id="start-screen" class="screen active">
-            <h1>직장인 유형 테스트</h1>
-            <p class="subtitle">AI가 분석하는 당신의 회사 동물 유형</p>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="#" class="logo" onclick="location.reload(); return false;">직장인 유형 테스트</a>
+            <ul class="nav-links">
+                <li><a href="#about">소개</a></li>
+                <li><a href="#how-it-works">이용방법</a></li>
+                <li><a href="#privacy">개인정보처리방침</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <div id="drop-zone" class="drop-zone">
-                <div class="drop-zone-content">
-                    <span class="drop-icon">📁</span>
-                    <p class="drop-text">여기에 사진을 드래그하거나</p>
-                    <button id="upload-btn" class="upload-btn">파일 선택</button>
+    <main class="main-content">
+        <div class="container">
+            <!-- 시작 화면 -->
+            <div id="start-screen" class="screen active">
+                <h1>직장인 유형 테스트</h1>
+                <p class="subtitle">AI가 분석하는 당신의 회사 동물 유형</p>
+
+                <div class="intro-text">
+                    <p>사진 한 장으로 알아보는 나의 직장인 성격 유형!</p>
+                    <p>독수리, 사자, 판다, 다람쥐 등 <strong>8가지 동물 유형</strong> 중 당신은 어떤 타입일까요?</p>
+                </div>
+
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">📁</span>
+                        <p class="drop-text">여기에 사진을 드래그하거나</p>
+                        <button id="upload-btn" class="upload-btn">파일 선택</button>
+                    </div>
+                </div>
+
+                <input type="file" id="file-input" accept="image/*" hidden>
+
+                <!-- 유형 소개 -->
+                <section class="types-preview" id="about">
+                    <h2>8가지 직장인 동물 유형</h2>
+                    <div class="types-grid">
+                        <div class="type-item">
+                            <span class="type-emoji">🦅</span>
+                            <span class="type-name">칼퇴하는 독수리형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">🦁</span>
+                            <span class="type-name">팀장감 사자형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">🐼</span>
+                            <span class="type-name">야근요정 판다형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">🐿️</span>
+                            <span class="type-name">간식헌터 다람쥐형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">🐨</span>
+                            <span class="type-name">휴게실 코알라형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">👀</span>
+                            <span class="type-name">눈치백단 미어캣형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">🦴</span>
+                            <span class="type-name">회식러버 하이에나형</span>
+                        </div>
+                        <div class="type-item">
+                            <span class="type-emoji">🕊️</span>
+                            <span class="type-name">이직준비 철새형</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 이용 방법 -->
+                <section class="how-it-works" id="how-it-works">
+                    <h2>이용 방법</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>얼굴이 잘 보이는 사진을 업로드하세요</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>AI가 당신의 직장인 유형을 분석합니다</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>결과를 확인하고 친구들과 공유하세요!</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 로딩 화면 -->
+            <div id="loading-screen" class="screen">
+                <div class="loader"></div>
+                <p id="loading-text">AI가 얼굴을 분석하고 있습니다...</p>
+            </div>
+
+            <!-- 결과 화면 -->
+            <div id="result-screen" class="screen">
+                <div class="result-card" id="result-card">
+                    <div class="result-emoji" id="result-emoji"></div>
+                    <h2 id="result-title"></h2>
+                    <p class="result-percentage" id="result-percentage"></p>
+                    <p class="result-description" id="result-description"></p>
+                    <div class="result-traits" id="result-traits"></div>
+                </div>
+
+                <div class="result-details">
+                    <div class="detail-section strengths-section">
+                        <h3>강점</h3>
+                        <ul id="result-strengths"></ul>
+                    </div>
+                    <div class="detail-section weaknesses-section">
+                        <h3>약점</h3>
+                        <ul id="result-weaknesses"></ul>
+                    </div>
+                    <div class="detail-section advice-section">
+                        <h3>조언</h3>
+                        <p id="result-advice"></p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="download-btn" class="action-btn download-btn">
+                        <span class="btn-icon">📥</span>
+                        <span>이미지 저장</span>
+                    </button>
+                    <button id="share-image-btn" class="action-btn share-btn">
+                        <span class="btn-icon">🖼️</span>
+                        <span>이미지 공유</span>
+                    </button>
+                    <button id="share-link-btn" class="action-btn share-link-btn">
+                        <span class="btn-icon">🔗</span>
+                        <span>결과 및 링크 공유</span>
+                    </button>
+                </div>
+
+                <div class="all-predictions" id="all-predictions">
+                    <h3>전체 분석 결과</h3>
+                    <div id="predictions-list"></div>
+                </div>
+
+                <button id="retry-btn" class="retry-btn">다시 테스트하기</button>
+            </div>
+
+            <!-- 미리보기 화면 (업로드용) -->
+            <div id="preview-screen" class="screen">
+                <h2>이 사진으로 분석할까요?</h2>
+                <img id="preview-image" src="" alt="미리보기">
+                <div class="preview-controls">
+                    <button id="analyze-btn" class="analyze-btn">분석하기</button>
+                    <button id="cancel-btn" class="back-btn">다른 사진 선택</button>
                 </div>
             </div>
+        </div>
+    </main>
 
-            <input type="file" id="file-input" accept="image/*" hidden>
+    <!-- Footer -->
+    <footer class="site-footer" id="privacy">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>직장인 유형 테스트</h3>
+                <p>AI 기술을 활용하여 재미있는 직장인 동물 유형을 분석해드립니다. 본 테스트는 오락 목적으로 제작되었으며, 실제 성격 진단과는 무관합니다.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>개인정보처리방침</h3>
+                <p>본 서비스는 사용자의 개인정보를 수집하지 않습니다. 업로드된 이미지는 서버에 저장되지 않으며, 분석 후 즉시 삭제됩니다. 모든 이미지 처리는 사용자의 브라우저 내에서만 이루어집니다.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>이용약관</h3>
+                <p>본 서비스는 무료로 제공되며, 테스트 결과는 참고용으로만 사용해주세요. 서비스 이용 중 발생하는 문제에 대해 책임지지 않습니다.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>문의하기</h3>
+                <p>서비스 관련 문의사항이 있으시면 아래 이메일로 연락주세요.</p>
+                <p class="contact-email">contact@example.com</p>
+            </div>
         </div>
 
-        <!-- 로딩 화면 -->
-        <div id="loading-screen" class="screen">
-            <div class="loader"></div>
-            <p id="loading-text">AI가 얼굴을 분석하고 있습니다...</p>
+        <div class="footer-bottom">
+            <p>&copy; 2024 직장인 유형 테스트. All rights reserved.</p>
+            <p>Powered by TensorFlow.js & Teachable Machine</p>
         </div>
-
-        <!-- 결과 화면 -->
-        <div id="result-screen" class="screen">
-            <div class="result-card" id="result-card">
-                <div class="result-emoji" id="result-emoji"></div>
-                <h2 id="result-title"></h2>
-                <p class="result-percentage" id="result-percentage"></p>
-                <p class="result-description" id="result-description"></p>
-                <div class="result-traits" id="result-traits"></div>
-            </div>
-
-            <div class="result-details">
-                <div class="detail-section strengths-section">
-                    <h3>강점</h3>
-                    <ul id="result-strengths"></ul>
-                </div>
-                <div class="detail-section weaknesses-section">
-                    <h3>약점</h3>
-                    <ul id="result-weaknesses"></ul>
-                </div>
-                <div class="detail-section advice-section">
-                    <h3>조언</h3>
-                    <p id="result-advice"></p>
-                </div>
-            </div>
-
-            <div class="action-buttons">
-                <button id="download-btn" class="action-btn download-btn">
-                    <span class="btn-icon">📥</span>
-                    <span>이미지 저장</span>
-                </button>
-                <button id="share-image-btn" class="action-btn share-btn">
-                    <span class="btn-icon">🖼️</span>
-                    <span>이미지 공유</span>
-                </button>
-                <button id="share-link-btn" class="action-btn share-link-btn">
-                    <span class="btn-icon">🔗</span>
-                    <span>결과 및 링크 공유</span>
-                </button>
-            </div>
-
-            <div class="all-predictions" id="all-predictions">
-                <h3>전체 분석 결과</h3>
-                <div id="predictions-list"></div>
-            </div>
-
-            <button id="retry-btn" class="retry-btn">다시 테스트하기</button>
-        </div>
-
-        <!-- 미리보기 화면 (업로드용) -->
-        <div id="preview-screen" class="screen">
-            <h2>이 사진으로 분석할까요?</h2>
-            <img id="preview-image" src="" alt="미리보기">
-            <div class="preview-controls">
-                <button id="analyze-btn" class="analyze-btn">분석하기</button>
-                <button id="cancel-btn" class="back-btn">다른 사진 선택</button>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script src="main.js"></script>
 </body>
