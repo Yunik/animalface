@@ -174,28 +174,27 @@ async function analyzeUploadedImage() {
     try {
         const previewImage = document.getElementById('preview-image');
 
-        // 이미지가 로드될 때까지 대기
-        if (!previewImage.complete) {
-            await new Promise((resolve, reject) => {
-                previewImage.onload = resolve;
-                previewImage.onerror = reject;
-            });
+        // 모델이 로드되지 않았으면 먼저 로드
+        if (!model) {
+            await loadModel();
         }
 
-        // 이미지를 캔버스에 그려서 분석 (CORS 문제 방지)
+        // 이미지를 캔버스에 그려서 분석
         const canvas = document.createElement('canvas');
-        canvas.width = previewImage.naturalWidth || previewImage.width;
-        canvas.height = previewImage.naturalHeight || previewImage.height;
+        const width = previewImage.naturalWidth || previewImage.width || 224;
+        const height = previewImage.naturalHeight || previewImage.height || 224;
+        canvas.width = width;
+        canvas.height = height;
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(previewImage, 0, 0);
+        ctx.drawImage(previewImage, 0, 0, width, height);
 
-        const predictions = await predict(canvas);
+        const predictions = await model.predict(canvas);
         clearInterval(loadingInterval);
         displayResult(predictions);
     } catch (error) {
         console.error('분석 오류:', error);
         clearInterval(loadingInterval);
-        alert('분석 중 오류가 발생했습니다. 다시 시도해주세요.');
+        alert('분석 중 오류가 발생했습니다: ' + error.message);
         showScreen('start');
     }
 }
@@ -205,8 +204,11 @@ function handleFile(file) {
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = (event) => {
-            document.getElementById('preview-image').src = event.target.result;
-            showScreen('preview');
+            const previewImage = document.getElementById('preview-image');
+            previewImage.onload = () => {
+                showScreen('preview');
+            };
+            previewImage.src = event.target.result;
         };
         reader.readAsDataURL(file);
     }
