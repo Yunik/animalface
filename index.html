@@ -1,14 +1,85 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직장인 유형 테스트</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <!-- 시작 화면 -->
+        <div id="start-screen" class="screen active">
+            <h1>직장인 유형 테스트</h1>
+            <p class="subtitle">AI가 분석하는 당신의 회사 동물 유형</p>
+
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <span class="drop-icon">📁</span>
+                    <p class="drop-text">여기에 사진을 드래그하거나</p>
+                    <button id="upload-btn" class="upload-btn">파일 선택</button>
+                </div>
+            </div>
+
+            <div class="divider">
+                <span>또는</span>
+            </div>
+
+            <button id="webcam-btn" class="option-btn">
+                <span class="icon">🎥</span>
+                <span>웹캠으로 촬영</span>
+            </button>
+
+            <input type="file" id="file-input" accept="image/*" hidden>
+        </div>
+
+        <!-- 웹캠 화면 -->
+        <div id="webcam-screen" class="screen">
+            <h2>카메라를 보고 포즈를 취해주세요</h2>
+            <div id="webcam-container"></div>
+            <div class="webcam-controls">
+                <button id="capture-btn" class="capture-btn">촬영하기</button>
+                <button id="back-btn" class="back-btn">돌아가기</button>
+            </div>
+        </div>
+
+        <!-- 로딩 화면 -->
+        <div id="loading-screen" class="screen">
+            <div class="loader"></div>
+            <p id="loading-text">AI가 얼굴을 분석하고 있습니다...</p>
+        </div>
+
+        <!-- 결과 화면 -->
+        <div id="result-screen" class="screen">
+            <div class="result-card" id="result-card">
+                <div class="result-emoji" id="result-emoji"></div>
+                <h2 id="result-title"></h2>
+                <p class="result-percentage" id="result-percentage"></p>
+                <p class="result-description" id="result-description"></p>
+                <div class="result-traits" id="result-traits"></div>
+            </div>
+
+            <div class="all-predictions" id="all-predictions">
+                <h3>전체 분석 결과</h3>
+                <div id="predictions-list"></div>
+            </div>
+
+            <button id="retry-btn" class="retry-btn">다시 테스트하기</button>
+        </div>
+
+        <!-- 미리보기 화면 (업로드용) -->
+        <div id="preview-screen" class="screen">
+            <h2>이 사진으로 분석할까요?</h2>
+            <img id="preview-image" src="" alt="미리보기">
+            <div class="preview-controls">
+                <button id="analyze-btn" class="analyze-btn">분석하기</button>
+                <button id="cancel-btn" class="back-btn">다른 사진 선택</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
