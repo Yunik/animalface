@@ -316,6 +316,47 @@ async function downloadResultCard() {
     }
 }
 
+// 이미지에 URL 워터마크 추가
+function addWatermarkToCanvas(originalCanvas, url) {
+    const padding = 30;
+    const footerHeight = 80;
+
+    // 새 캔버스 생성 (원본 + 푸터)
+    const newCanvas = document.createElement('canvas');
+    newCanvas.width = originalCanvas.width;
+    newCanvas.height = originalCanvas.height + footerHeight;
+
+    const ctx = newCanvas.getContext('2d');
+
+    // 배경색 (그라데이션과 어울리는 색)
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
+
+    // 원본 이미지 그리기
+    ctx.drawImage(originalCanvas, 0, 0);
+
+    // 푸터 배경
+    ctx.fillStyle = '#f8f9fa';
+    ctx.fillRect(0, originalCanvas.height, newCanvas.width, footerHeight);
+
+    // 구분선
+    ctx.strokeStyle = '#e0e0e0';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0, originalCanvas.height);
+    ctx.lineTo(newCanvas.width, originalCanvas.height);
+    ctx.stroke();
+
+    // URL 텍스트
+    ctx.fillStyle = '#667eea';
+    ctx.font = 'bold 28px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('나도 테스트 하기 👉 ' + url, newCanvas.width / 2, originalCanvas.height + footerHeight / 2);
+
+    return newCanvas;
+}
+
 // 결과 공유하기
 async function shareResult() {
     const shareBtn = document.getElementById('share-btn');
@@ -338,8 +379,11 @@ async function shareResult() {
                 useCORS: true
             });
 
+            // URL 워터마크 추가
+            const canvasWithWatermark = addWatermarkToCanvas(canvas, siteUrl);
+
             // Canvas를 Blob으로 변환
-            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            const blob = await new Promise(resolve => canvasWithWatermark.toBlob(resolve, 'image/png'));
             const file = new File([blob], `직장인유형_${currentResultData?.name || '결과'}.png`, { type: 'image/png' });
 
             const shareData = {
