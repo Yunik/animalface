@@ -334,6 +334,81 @@ h1 {
     font-weight: 500;
 }
 
+/* 상세 분석 결과 */
+.result-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.detail-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+}
+
+.detail-section h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.strengths-section h3 {
+    color: #11998e;
+}
+
+.strengths-section h3::before {
+    content: '💪';
+}
+
+.weaknesses-section h3 {
+    color: #e74c3c;
+}
+
+.weaknesses-section h3::before {
+    content: '⚠️';
+}
+
+.advice-section h3 {
+    color: #667eea;
+}
+
+.advice-section h3::before {
+    content: '💡';
+}
+
+.detail-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-section li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.detail-section li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.advice-section p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
 /* 전체 예측 결과 */
 .all-predictions {
     background: #f8f9fa;
