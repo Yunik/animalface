@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -55,6 +56,17 @@
                     <h3>조언</h3>
                     <p id="result-advice"></p>
                 </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="download-btn" class="action-btn download-btn">
+                    <span class="btn-icon">📥</span>
+                    <span>이미지 저장</span>
+                </button>
+                <button id="share-btn" class="action-btn share-btn">
+                    <span class="btn-icon">📤</span>
+                    <span>공유하기</span>
+                </button>
             </div>
 
             <div class="all-predictions" id="all-predictions">

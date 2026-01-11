@@ -195,6 +195,9 @@ function displayResult(predictions) {
 
     document.getElementById('result-advice').textContent = data.advice;
 
+    // 현재 결과 데이터 저장 (공유용)
+    currentResultData = data;
+
     // 전체 예측 결과 표시
     const predictionsListHTML = sorted.map(pred => {
         const percent = Math.round(pred.probability * 100);
@@ -276,6 +279,102 @@ function handleFile(file) {
     }
 }
 
+// 현재 결과 데이터 저장 (공유용)
+let currentResultData = null;
+
+// 결과 카드 이미지로 다운로드
+async function downloadResultCard() {
+    const downloadBtn = document.getElementById('download-btn');
+    const originalText = downloadBtn.innerHTML;
+
+    try {
+        downloadBtn.disabled = true;
+        downloadBtn.innerHTML = '<span class="btn-icon">⏳</span><span>저장 중...</span>';
+
+        const resultCard = document.getElementById('result-card');
+        const canvas = await html2canvas(resultCard, {
+            scale: 2,
+            backgroundColor: null,
+            useCORS: true
+        });
+
+        const link = document.createElement('a');
+        link.download = `직장인유형_${currentResultData?.name || '결과'}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        downloadBtn.innerHTML = '<span class="btn-icon">✅</span><span>저장 완료!</span>';
+        setTimeout(() => {
+            downloadBtn.innerHTML = originalText;
+            downloadBtn.disabled = false;
+        }, 2000);
+    } catch (error) {
+        console.error('다운로드 오류:', error);
+        alert('이미지 저장 중 오류가 발생했습니다.');
+        downloadBtn.innerHTML = originalText;
+        downloadBtn.disabled = false;
+    }
+}
+
+// 결과 공유하기
+async function shareResult() {
+    const shareBtn = document.getElementById('share-btn');
+
+    const shareData = {
+        title: '직장인 유형 테스트 결과',
+        text: `나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"입니다! ${currentResultData?.description || ''}\n\n나도 테스트 해보기:`,
+        url: window.location.href
+    };
+
+    // Web Share API 지원 확인
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (error) {
+            if (error.name !== 'AbortError') {
+                console.error('공유 오류:', error);
+                fallbackShare(shareData);
+            }
+        }
+    } else {
+        fallbackShare(shareData);
+    }
+}
+
+// 공유 API 미지원 시 대체 방법
+function fallbackShare(shareData) {
+    const textToCopy = `${shareData.text}\n${shareData.url}`;
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('결과가 클립보드에 복사되었습니다!\n원하는 곳에 붙여넣기 하세요.');
+        }).catch(() => {
+            showCopyPrompt(textToCopy);
+        });
+    } else {
+        showCopyPrompt(textToCopy);
+    }
+}
+
+// 복사 프롬프트 표시
+function showCopyPrompt(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        alert('결과가 클립보드에 복사되었습니다!');
+    } catch (err) {
+        prompt('아래 텍스트를 복사하세요:', text);
+    }
+
+    document.body.removeChild(textArea);
+}
+
 // 이벤트 리스너 설정
 document.addEventListener('DOMContentLoaded', () => {
     const dropZone = document.getElementById('drop-zone');
@@ -332,6 +431,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('file-input').value = '';
         showScreen('start');
     });
+
+    // 다운로드 버튼
+    document.getElementById('download-btn').addEventListener('click', downloadResultCard);
+
+    // 공유 버튼
+    document.getElementById('share-btn').addEventListener('click', shareResult);
 
     // 모델 미리 로드
     loadModel().then(() => {
