@@ -319,41 +319,71 @@ async function downloadResultCard() {
 // 결과 공유하기
 async function shareResult() {
     const shareBtn = document.getElementById('share-btn');
+    const originalText = shareBtn.innerHTML;
     const siteUrl = 'https://animalface-2m5.pages.dev/';
 
-    const shareData = {
-        title: '직장인 유형 테스트 결과',
-        text: `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉`,
-        url: siteUrl
-    };
+    const shareText = `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉 ${siteUrl}`;
 
     // Web Share API 지원 확인
     if (navigator.share) {
         try {
-            await navigator.share(shareData);
+            shareBtn.disabled = true;
+            shareBtn.innerHTML = '<span class="btn-icon">⏳</span><span>준비 중...</span>';
+
+            // 결과 카드를 이미지로 변환
+            const resultCard = document.getElementById('result-card');
+            const canvas = await html2canvas(resultCard, {
+                scale: 2,
+                backgroundColor: null,
+                useCORS: true
+            });
+
+            // Canvas를 Blob으로 변환
+            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            const file = new File([blob], `직장인유형_${currentResultData?.name || '결과'}.png`, { type: 'image/png' });
+
+            const shareData = {
+                title: '직장인 유형 테스트 결과',
+                text: shareText,
+                files: [file]
+            };
+
+            // 파일 공유 지원 확인
+            if (navigator.canShare && navigator.canShare(shareData)) {
+                await navigator.share(shareData);
+            } else {
+                // 파일 공유 미지원 시 텍스트만 공유
+                await navigator.share({
+                    title: '직장인 유형 테스트 결과',
+                    text: shareText
+                });
+            }
+
+            shareBtn.innerHTML = originalText;
+            shareBtn.disabled = false;
         } catch (error) {
+            shareBtn.innerHTML = originalText;
+            shareBtn.disabled = false;
             if (error.name !== 'AbortError') {
                 console.error('공유 오류:', error);
-                fallbackShare(shareData);
+                fallbackShare(shareText);
             }
         }
     } else {
-        fallbackShare(shareData);
+        fallbackShare(shareText);
     }
 }
 
 // 공유 API 미지원 시 대체 방법
-function fallbackShare(shareData) {
-    const textToCopy = `${shareData.text}\n${shareData.url}`;
-
+function fallbackShare(text) {
     if (navigator.clipboard) {
-        navigator.clipboard.writeText(textToCopy).then(() => {
+        navigator.clipboard.writeText(text).then(() => {
             alert('결과가 클립보드에 복사되었습니다!\n원하는 곳에 붙여넣기 하세요.');
         }).catch(() => {
-            showCopyPrompt(textToCopy);
+            showCopyPrompt(text);
         });
     } else {
-        showCopyPrompt(textToCopy);
+        showCopyPrompt(text);
     }
 }
 
