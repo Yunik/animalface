@@ -9,14 +9,13 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    flex-direction: column;
 }
 
 .container {
     width: 100%;
     max-width: 500px;
+    margin: 0 auto;
 }
 
 .screen {
@@ -593,12 +592,12 @@ h1 {
 
 /* Main Content */
 .main-content {
+    flex: 1;
     padding-top: 70px;
-    min-height: calc(100vh - 70px);
+    padding-bottom: 40px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-bottom: 40px;
+    align-items: center;
 }
 
 /* Intro Text */
@@ -709,11 +708,11 @@ h1 {
     background: #1a1a2e;
     color: #ccc;
     padding: 25px 20px;
-    margin-top: auto;
+    width: 100%;
 }
 
 .footer-simple {
-    max-width: 1200px;
+    max-width: 500px;
     margin: 0 auto;
     text-align: center;
 }
