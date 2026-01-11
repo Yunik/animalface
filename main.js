@@ -345,6 +345,7 @@ async function shareResult() {
             const shareData = {
                 title: '직장인 유형 테스트 결과',
                 text: shareText,
+                url: siteUrl,
                 files: [file]
             };
 
@@ -352,10 +353,11 @@ async function shareResult() {
             if (navigator.canShare && navigator.canShare(shareData)) {
                 await navigator.share(shareData);
             } else {
-                // 파일 공유 미지원 시 텍스트만 공유
+                // 파일 공유 미지원 시 텍스트+URL 공유
                 await navigator.share({
                     title: '직장인 유형 테스트 결과',
-                    text: shareText
+                    text: shareText,
+                    url: siteUrl
                 });
             }
 
