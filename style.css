@@ -1061,4 +1061,42 @@ h1 {
     .main-content {
         padding-top: 60px;
     }
+
+    .lang-switch {
+        margin-left: auto;
+    }
+}
+
+/* Language Switch */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    color: #666;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.lang-btn:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.lang-btn.active {
+    color: #667eea;
+    font-weight: 600;
+    background: rgba(102, 126, 234, 0.15);
+}
+
+.lang-divider {
+    color: #ccc;
+    font-size: 0.8rem;
 }

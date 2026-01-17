@@ -1,27 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Korean Pages -->
   <url>
     <loc>https://animalface-2m5.pages.dev/</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://animalface-2m5.pages.dev/"/>
   </url>
   <url>
     <loc>https://animalface-2m5.pages.dev/about.html</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/about.html"/>
   </url>
   <url>
     <loc>https://animalface-2m5.pages.dev/how-to-use.html</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/how-to-use.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/how-to-use.html"/>
   </url>
   <url>
     <loc>https://animalface-2m5.pages.dev/privacy.html</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/privacy.html"/>
+  </url>
+
+  <!-- English Pages -->
+  <url>
+    <loc>https://animalface-2m5.pages.dev/en/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://animalface-2m5.pages.dev/"/>
+  </url>
+  <url>
+    <loc>https://animalface-2m5.pages.dev/en/about.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/about.html"/>
+  </url>
+  <url>
+    <loc>https://animalface-2m5.pages.dev/en/how-to-use.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/how-to-use.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/how-to-use.html"/>
+  </url>
+  <url>
+    <loc>https://animalface-2m5.pages.dev/en/privacy.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalface-2m5.pages.dev/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalface-2m5.pages.dev/en/privacy.html"/>
   </url>
 </urlset>
