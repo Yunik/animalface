@@ -321,7 +321,7 @@ const SITE_URL = 'https://animalworker.site/en/';
 
 // Generate share text
 function getShareText() {
-    return `${currentResultData?.emoji || ''} My office worker type is "${currentResultData?.name || 'Unknown'}"!\n\n${currentResultData?.description || ''}\n\nTake the test too 👉 ${SITE_URL}`;
+    return `${currentResultData?.emoji || ''} My office worker type is "${currentResultData?.name || 'Unknown'}"!\n\n${currentResultData?.description || ''}\n\nTake the test too 👉`;
 }
 
 // Share image (image only)
@@ -383,7 +383,8 @@ async function shareLink() {
 
             await navigator.share({
                 title: 'Office Worker Type Test Result',
-                text: shareText
+                text: shareText,
+                url: SITE_URL
             });
 
             shareBtn.innerHTML = originalText;
@@ -393,11 +394,11 @@ async function shareLink() {
             shareBtn.disabled = false;
             if (error.name !== 'AbortError') {
                 console.error('Link share error:', error);
-                fallbackShare(shareText);
+                fallbackShare(shareText + ' ' + SITE_URL);
             }
         }
     } else {
-        fallbackShare(shareText);
+        fallbackShare(shareText + ' ' + SITE_URL);
     }
 }
 

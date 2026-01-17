@@ -321,7 +321,7 @@ const SITE_URL = 'https://animalworker.site/';
 
 // 공유 텍스트 생성
 function getShareText() {
-    return `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉 ${SITE_URL}`;
+    return `${currentResultData?.emoji || ''} 나의 직장인 유형은 "${currentResultData?.name || '알 수 없음'}"!\n\n${currentResultData?.description || ''}\n\n나도 테스트 해보기 👉`;
 }
 
 // 이미지 공유 (이미지만)
@@ -383,7 +383,8 @@ async function shareLink() {
 
             await navigator.share({
                 title: '직장인 유형 테스트 결과',
-                text: shareText
+                text: shareText,
+                url: SITE_URL
             });
 
             shareBtn.innerHTML = originalText;
@@ -393,11 +394,11 @@ async function shareLink() {
             shareBtn.disabled = false;
             if (error.name !== 'AbortError') {
                 console.error('링크 공유 오류:', error);
-                fallbackShare(shareText);
+                fallbackShare(shareText + ' ' + SITE_URL);
             }
         }
     } else {
-        fallbackShare(shareText);
+        fallbackShare(shareText + ' ' + SITE_URL);
     }
 }
 
