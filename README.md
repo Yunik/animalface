@@ -2,7 +2,7 @@
 
 AI 얼굴 분석으로 알아보는 나의 직장인 동물 유형 테스트
 
-**Live Demo**: https://animalface-2m5.pages.dev/
+**Live Demo**: https://animalworker.site/
 
 ## 소개
 
@@ -123,7 +123,7 @@ python -m http.server 8000
 ## 문의
 
 - **이메일**: kyi0206@naver.com
-- **웹사이트**: https://animalface-2m5.pages.dev/
+- **웹사이트**: https://animalworker.site/
 
 ---
 
