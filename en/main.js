@@ -317,7 +317,7 @@ async function downloadResultCard() {
 }
 
 // Site URL
-const SITE_URL = 'https://animalface-2m5.pages.dev/en/';
+const SITE_URL = 'https://animalworker.site/en/';
 
 // Generate share text
 function getShareText() {
@@ -383,8 +383,7 @@ async function shareLink() {
 
             await navigator.share({
                 title: 'Office Worker Type Test Result',
-                text: shareText,
-                url: SITE_URL
+                text: shareText
             });
 
             shareBtn.innerHTML = originalText;

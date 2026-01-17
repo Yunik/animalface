@@ -317,7 +317,7 @@ async function downloadResultCard() {
 }
 
 // 사이트 URL
-const SITE_URL = 'https://animalface-2m5.pages.dev/';
+const SITE_URL = 'https://animalworker.site/';
 
 // 공유 텍스트 생성
 function getShareText() {
@@ -383,8 +383,7 @@ async function shareLink() {
 
             await navigator.share({
                 title: '직장인 유형 테스트 결과',
-                text: shareText,
-                url: SITE_URL
+                text: shareText
             });
 
             shareBtn.innerHTML = originalText;
