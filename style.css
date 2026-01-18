@@ -1100,3 +1100,206 @@ h1 {
     color: #ccc;
     font-size: 0.8rem;
 }
+
+/* ===== 메인 페이지 콘텐츠 섹션 스타일 ===== */
+
+/* 서비스 특징 섹션 */
+.features-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+    text-align: left;
+}
+
+.features-section h2 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.feature-item {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f1ff 100%);
+    padding: 20px 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.feature-item h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.feature-item p {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 동물 유형 미리보기 섹션 */
+.types-preview-section {
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.types-preview-section h2 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.types-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.type-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.type-preview-item:hover {
+    background: #f0f1f3;
+    transform: translateY(-2px);
+}
+
+.type-preview-item .type-emoji {
+    font-size: 1.5rem;
+}
+
+.type-preview-item .type-name {
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.types-cta {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #667eea;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* 테스트 방법 안내 섹션 */
+.how-it-works-section {
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.how-it-works-section h2 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.steps-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.step-simple-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f1ff 100%);
+    border-radius: 12px;
+    text-align: left;
+}
+
+.step-simple-item .step-number {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-simple-item p {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.more-info {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+    text-align: center;
+}
+
+.more-info a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.more-info a:hover {
+    text-decoration: underline;
+}
+
+/* 모바일 반응형 - 메인 페이지 콘텐츠 */
+@media (max-width: 480px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .types-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-item {
+        padding: 15px;
+    }
+
+    .feature-icon {
+        font-size: 1.8rem;
+    }
+
+    .feature-item h3 {
+        font-size: 0.95rem;
+    }
+
+    .feature-item p {
+        font-size: 0.8rem;
+    }
+}
