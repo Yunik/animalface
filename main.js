@@ -506,4 +506,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(err => {
         console.error('모델 로드 실패:', err);
     });
+
+    // 데모 결과 탭 기능
+    const demoData = {
+        eagle: { emoji: '🦅', name: '칼퇴하는 독수리형', desc: '정시 퇴근의 달인! 업무 시간에 집중해서 효율적으로 일하고, 칼같이 퇴근하는 프로 직장인입니다. 높은 곳에서 전체를 조망하듯 업무의 우선순위를 명확히 파악하고, 불필요한 야근은 과감히 거부합니다.', traits: ['효율적', '시간관리', '워라밸', '집중력', '결단력'], link: 'types/eagle.html' },
+        lion: { emoji: '🦁', name: '팀장감 사자형', desc: '타고난 리더십의 소유자! 자신감 넘치는 태도로 프로젝트를 이끌고, 팀원들에게 신뢰를 주는 타입입니다. 어려운 상황에서도 흔들리지 않는 카리스마로 팀을 이끕니다.', traits: ['리더십', '자신감', '책임감', '카리스마', '추진력'], link: 'types/lion.html' },
+        panda: { emoji: '🐼', name: '야근요정 판다형', desc: '다크서클이 훈장! 묵묵히 일하다 보면 어느새 야근하고 있는 성실한 직장인입니다. 맡은 일은 끝까지 해내는 책임감의 소유자로, 팀에서 믿음직한 존재입니다.', traits: ['성실함', '묵묵함', '책임감', '인내심', '끈기'], link: 'types/panda.html' },
+        squirrel: { emoji: '🐿️', name: '간식헌터 다람쥐형', desc: '간식이 있는 곳에 내가 있다! 서랍에 간식을 쟁여두고, 간식으로 에너지를 충전하는 귀여운 직장인입니다. 작은 것에서 행복을 찾고, 동료들과 나누는 것을 좋아합니다.', traits: ['간식러버', '에너지충전', '귀여움', '부지런함', '나눔정신'], link: 'types/squirrel.html' },
+        koala: { emoji: '🐨', name: '휴게실 코알라형', desc: '여유로운 힐링 담당! 급하게 일하기보다 차분하게 처리하며, 휴게실에서 재충전하는 것을 중요시합니다. 스트레스 관리의 달인으로, 항상 평온한 에너지를 유지합니다.', traits: ['여유로움', '힐링', '차분함', '휴식중시', '평온함'], link: 'types/koala.html' },
+        meerkat: { emoji: '👀', name: '눈치백단 미어캣형', desc: '회사 분위기 파악의 달인! 상사의 기분, 팀 분위기를 빠르게 읽고 상황에 맞게 행동하는 센스쟁이입니다. 위기 상황을 미리 감지하고 대처하는 능력이 탁월합니다.', traits: ['눈치빠름', '상황파악', '센스있음', '적응력', '관찰력'], link: 'types/meerkat.html' },
+        hyena: { emoji: '🦴', name: '회식러버 하이에나형', desc: '팀 분위기 메이커! 회식자리면 빠지지 않고, 동료들과 어울리는 것을 즐기는 사교적인 직장인입니다. 어떤 자리든 분위기를 살리는 능력자로, 회사 내 인맥왕입니다.', traits: ['사교적', '분위기메이커', '팀플레이어', '유쾌함', '네트워커'], link: 'types/hyena.html' },
+        bird: { emoji: '🕊️', name: '이직준비 철새형', desc: '더 나은 기회를 찾아 떠날 준비가 된 당신! 자기계발에 열심이고, 커리어 성장을 중요시합니다. 현재에 안주하지 않고 끊임없이 성장하려는 야망가입니다.', traits: ['자기계발', '성장지향', '도전적', '야망가', '트렌드세터'], link: 'types/bird.html' }
+    };
+
+    const demoTabs = document.getElementById('demo-tabs');
+    if (demoTabs) {
+        demoTabs.addEventListener('click', (e) => {
+            const tab = e.target.closest('.demo-tab');
+            if (!tab) return;
+            demoTabs.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const type = tab.dataset.type;
+            const data = demoData[type];
+            if (!data) return;
+            const demoResult = document.getElementById('demo-result');
+            demoResult.querySelector('.demo-emoji').textContent = data.emoji;
+            demoResult.querySelector('h4').textContent = data.name;
+            demoResult.querySelector('.demo-desc').textContent = data.desc;
+            demoResult.querySelector('.demo-traits').innerHTML = data.traits.map(t => `<span class="demo-trait">#${t}</span>`).join('');
+            demoResult.querySelector('.demo-detail-link').href = data.link;
+        });
+    }
 });

@@ -506,4 +506,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }).catch(err => {
         console.error('Model load failed:', err);
     });
+
+    // Demo result tabs
+    const demoData = {
+        eagle: { emoji: '🦅', name: 'The Clock-Out Eagle', desc: 'Master of on-time departure! You focus intensely during work hours, work efficiently, and leave exactly on time like a true professional. Like an eagle surveying from above, you clearly identify work priorities and boldly refuse unnecessary overtime.', traits: ['Efficient', 'Time-management', 'Work-life-balance', 'Focused', 'Decisive'], link: 'types/eagle.html' },
+        lion: { emoji: '🦁', name: 'The Leader Lion', desc: 'A natural-born leader! With confident attitude, you lead projects and earn trust from team members. With unwavering charisma even in difficult situations, you guide the team forward.', traits: ['Leadership', 'Confident', 'Responsible', 'Charismatic', 'Driven'], link: 'types/lion.html' },
+        panda: { emoji: '🐼', name: 'The Overtime Panda', desc: 'Dark circles are your badge of honor! Working diligently, you often find yourself staying late. As someone who finishes what they start, you\'re a reliable presence in the team.', traits: ['Diligent', 'Steady', 'Responsible', 'Patient', 'Persistent'], link: 'types/panda.html' },
+        squirrel: { emoji: '🐿️', name: 'The Snack Hunter Squirrel', desc: 'Where there are snacks, there you are! Stocking up treats in your desk drawer, you recharge with snacks. You find happiness in little things and love sharing with colleagues.', traits: ['Snack-lover', 'Energy-booster', 'Adorable', 'Industrious', 'Sharing'], link: 'types/squirrel.html' },
+        koala: { emoji: '🐨', name: 'The Break Room Koala', desc: 'The relaxed healer! Rather than rushing through tasks, you handle things calmly and value recharging in the break room. As a master of stress management, you always maintain peaceful energy.', traits: ['Relaxed', 'Healing', 'Calm', 'Rest-oriented', 'Peaceful'], link: 'types/koala.html' },
+        meerkat: { emoji: '👀', name: 'The Office-Savvy Meerkat', desc: 'Master of reading the room! You quickly sense the boss\'s mood and team atmosphere, acting appropriately for every situation. You have excellent ability to detect and handle potential crises.', traits: ['Perceptive', 'Awareness', 'Tactful', 'Adaptable', 'Observant'], link: 'types/meerkat.html' },
+        hyena: { emoji: '🦴', name: 'The Team Dinner Hyena', desc: 'The team mood maker! Never missing a team dinner, you\'re the social butterfly who loves hanging out with colleagues. You\'re the life of any gathering and the networking champion of the office.', traits: ['Social', 'Mood-maker', 'Team-player', 'Cheerful', 'Networker'], link: 'types/hyena.html' },
+        bird: { emoji: '🕊️', name: 'The Career Migrant Bird', desc: 'Ready to fly toward better opportunities! You\'re passionate about self-improvement and prioritize career growth. Never settling for the status quo, you\'re an ambitious go-getter constantly seeking growth.', traits: ['Self-improvement', 'Growth-oriented', 'Challenging', 'Ambitious', 'Trendsetter'], link: 'types/bird.html' }
+    };
+
+    const demoTabs = document.getElementById('demo-tabs');
+    if (demoTabs) {
+        demoTabs.addEventListener('click', (e) => {
+            const tab = e.target.closest('.demo-tab');
+            if (!tab) return;
+            demoTabs.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const type = tab.dataset.type;
+            const data = demoData[type];
+            if (!data) return;
+            const demoResult = document.getElementById('demo-result');
+            demoResult.querySelector('.demo-emoji').textContent = data.emoji;
+            demoResult.querySelector('h4').textContent = data.name;
+            demoResult.querySelector('.demo-desc').textContent = data.desc;
+            demoResult.querySelector('.demo-traits').innerHTML = data.traits.map(t => `<span class="demo-trait">#${t}</span>`).join('');
+            demoResult.querySelector('.demo-detail-link').href = data.link;
+        });
+    }
 });
