@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Korean Pages -->
+
+  <!-- ==================== Korean Main Pages ==================== -->
   <url>
     <loc>https://animalworker.site/</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/"/>
@@ -28,6 +29,22 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/how-to-use.html"/>
   </url>
   <url>
+    <loc>https://animalworker.site/contact.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/contact.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/terms.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/terms.html"/>
+  </url>
+  <url>
     <loc>https://animalworker.site/privacy.html</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>yearly</changefreq>
@@ -36,10 +53,126 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/privacy.html"/>
   </url>
 
-  <!-- English Pages -->
+  <!-- ==================== Korean Blog Pages ==================== -->
+  <url>
+    <loc>https://animalworker.site/blog/</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/blog/how-ai-test-works.html</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/how-ai-test-works.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/how-ai-test-works.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/blog/photo-guide.html</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/photo-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/photo-guide.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/blog/type-compatibility.html</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/type-compatibility.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/type-compatibility.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/blog/workplace-communication.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/workplace-communication.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/workplace-communication.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/blog/team-building.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/team-building.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/team-building.html"/>
+  </url>
+
+  <!-- ==================== Korean Type Pages ==================== -->
+  <url>
+    <loc>https://animalworker.site/types/eagle.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/eagle.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/eagle.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/lion.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/lion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/lion.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/panda.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/panda.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/panda.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/squirrel.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/squirrel.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/squirrel.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/koala.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/koala.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/koala.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/meerkat.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/meerkat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/meerkat.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/hyena.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/hyena.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/hyena.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/types/bird.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/bird.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/bird.html"/>
+  </url>
+
+  <!-- ==================== English Main Pages ==================== -->
   <url>
     <loc>https://animalworker.site/en/</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/"/>
@@ -63,6 +196,22 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/how-to-use.html"/>
   </url>
   <url>
+    <loc>https://animalworker.site/en/contact.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/contact.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/terms.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/terms.html"/>
+  </url>
+  <url>
     <loc>https://animalworker.site/en/privacy.html</loc>
     <lastmod>2026-01-17</lastmod>
     <changefreq>yearly</changefreq>
@@ -70,4 +219,121 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/privacy.html"/>
   </url>
+
+  <!-- ==================== English Blog Pages ==================== -->
+  <url>
+    <loc>https://animalworker.site/en/blog/</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/blog/how-ai-test-works.html</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/how-ai-test-works.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/how-ai-test-works.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/blog/photo-guide.html</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/photo-guide.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/photo-guide.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/blog/type-compatibility.html</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/type-compatibility.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/type-compatibility.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/blog/workplace-communication.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/workplace-communication.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/workplace-communication.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/blog/team-building.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/blog/team-building.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/blog/team-building.html"/>
+  </url>
+
+  <!-- ==================== English Type Pages ==================== -->
+  <url>
+    <loc>https://animalworker.site/en/types/eagle.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/eagle.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/eagle.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/lion.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/lion.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/lion.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/panda.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/panda.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/panda.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/squirrel.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/squirrel.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/squirrel.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/koala.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/koala.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/koala.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/meerkat.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/meerkat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/meerkat.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/hyena.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/hyena.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/hyena.html"/>
+  </url>
+  <url>
+    <loc>https://animalworker.site/en/types/bird.html</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://animalworker.site/types/bird.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://animalworker.site/en/types/bird.html"/>
+  </url>
+
 </urlset>
